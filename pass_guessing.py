@@ -7,15 +7,31 @@ print("Choose difficulty level")
 
 level = input("Enter Difficulity level : ").lower()
 if level == "easy":
-    main_guess = random.choice(easy_word)
+    secret_word = random.choice(easy_word)
 elif level == "medium":
-    main_guess = random.choice(medium_word)
+    secret_word = random.choice(medium_word)
 elif level == "hard":
-    main_guess = random.choice(hard_word)
+    secret_word = random.choice(hard_word)
 else:
     print("Invalid Choice, Default directed to easy level")
-    main_guess  = random.choice(easy_word)
+    secret_word  = random.choice(easy_word)
 
 attempts = 0
-print("\nGuess the secret password")                           
+print("\nGuess the secret password")              
+
+while True:
+    guess = input("Enter Your guess : ").lower()
+    attempts+=1
+
+    if guess ==secret_word  :
+        print(f"You guessed it in {attempts} attempts!!!!")
+        break
+    hint = ""
+    for i in range(len(secret_word)):
+        if i < len(guess) and guess[i] == secret_word[i]:
+            hint+=guess[i]
+        else:
+            hint+="_"
+    print(f"Hint{hint}")
+print("Game over")           
    
